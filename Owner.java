@@ -1,52 +1,48 @@
-public class Owner {
-    // 1. PRIVATE FIELDS
-    private int ownerId;
-    private String name;
+// Owner - Person-нен мұрагер (extends кілт сөзі)
+public class Owner extends Person {
     private String phone;
-    private int numberOfPets;
+    private int petCount;
 
-    // 2. CONSTRUCTOR WITH PARAMETERS
-    public Owner(int ownerId, String name, String phone, int numberOfPets) {
-        this.ownerId = ownerId;
-        this.name = name;
+    // Constructor - super() арқылы parent конструкторын шақырамыз
+    public Owner(int id, String name, String phone, int petCount) {
+        super(id, name);  // Person класстың конструкторын шақыру
         this.phone = phone;
-        this.numberOfPets = numberOfPets;
+        this.petCount = petCount;
     }
 
-    // 3. DEFAULT CONSTRUCTOR (optional)
+    // Default constructor
     public Owner() {
-        this.name = "Unknown";
+        super();  // Person-ның default конструкторын шақыру
         this.phone = "Unknown";
-        this.numberOfPets = 0;
+        this.petCount = 0;
     }
 
-    // 4. GETTERS AND SETTERS
-    public int getOwnerId() { return ownerId; }
-    public void setOwnerId(int ownerId) { this.ownerId = ownerId; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public String getPhone() { return phone; }
-    public void setPhone(String phone) { this.phone = phone; }
-
-    public int getNumberOfPets() { return numberOfPets; }
-    public void setNumberOfPets(int numberOfPets) { this.numberOfPets = numberOfPets; }
-
-    // 5. ADDITIONAL METHODS
-    public void addPet() {
-        this.numberOfPets++;
+    // Getters and Setters
+    public String getPhone() {
+        return phone;
     }
 
-    public void removePet() {
-        if (this.numberOfPets > 0) {
-            this.numberOfPets--;
-        }
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    // 6. toString() METHOD
+    public int getPetCount() {
+        return petCount;
+    }
+
+    public void setPetCount(int petCount) {
+        this.petCount = petCount;
+    }
+
+    // Person-дің work() әдісін override жасаймыз
+    @Override
+    public void work() {
+        System.out.println(getName() + " is taking care of " + petCount + " pets.");
+    }
+
+    // toString() әдісін override жасаймыз
     @Override
     public String toString() {
-        return "Owner{name='" + name + "', phone='" + phone + "', numberOfPets=" + numberOfPets + "}";
+        return "Owner{" + super.toString() + ", phone='" + phone + "', pets=" + petCount + "}";
     }
 }

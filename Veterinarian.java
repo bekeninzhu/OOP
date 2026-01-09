@@ -1,50 +1,48 @@
-public class Veterinarian {
-    // 1. PRIVATE FIELDS
-    private int vetId;
-    private String name;
-    private String specialization;
-    private int experienceYears;
+// Veterinarian - Person-нен мұрагер (extends кілт сөзі)
+public class Veterinarian extends Person {
+    private String specialty;
+    private int experience;
 
-    // 2. CONSTRUCTOR WITH PARAMETERS
-    public Veterinarian(int vetId, String name, String specialization, int experienceYears) {
-        this.vetId = vetId;
-        this.name = name;
-        this.specialization = specialization;
-        this.experienceYears = experienceYears;
+    // Constructor - super() арқылы parent конструкторын шақырамыз
+    public Veterinarian(int id, String name, String specialty, int experience) {
+        super(id, name);  // Person класстың конструкторын шақыру
+        this.specialty = specialty;
+        this.experience = experience;
     }
 
-    // 3. DEFAULT CONSTRUCTOR (optional)
+    // Default constructor
     public Veterinarian() {
-        this.name = "Unknown";
-        this.specialization = "General";
-        this.experienceYears = 0;
+        super();  // Person-ның default конструкторын шақыру
+        this.specialty = "General";
+        this.experience = 0;
     }
 
-    // 4. GETTERS AND SETTERS
-    public int getVetId() { return vetId; }
-    public void setVetId(int vetId) { this.vetId = vetId; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public String getSpecialization() { return specialization; }
-    public void setSpecialization(String specialization) { this.specialization = specialization; }
-
-    public int getExperienceYears() { return experienceYears; }
-    public void setExperienceYears(int experienceYears) { this.experienceYears = experienceYears; }
-
-    // 5. ADDITIONAL METHODS
-    public boolean isExperienced() {
-        return experienceYears > 5;
+    // Getters and Setters
+    public String getSpecialty() {
+        return specialty;
     }
 
-    public void treatPet() {
-        System.out.println(name + " is treating the pet.");
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
     }
 
-    // 6. toString() METHOD
+    public int getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    // Person-дің work() әдісін override жасаймыз
+    @Override
+    public void work() {
+        System.out.println("Dr. " + getName() + " is performing surgery.");
+    }
+
+    // toString() әдісін override жасаймыз
     @Override
     public String toString() {
-        return "Veterinarian{name='" + name + "', specialization='" + specialization + "', experienceYears=" + experienceYears + "}";
+        return "Vet{" + super.toString() + ", specialty='" + specialty + "', exp=" + experience + "}";
     }
 }
